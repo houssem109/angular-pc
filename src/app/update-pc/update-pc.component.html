@@ -1,0 +1,103 @@
+<div class="container">
+    <div>
+      <h2>Ajouter un PC :</h2>
+    </div>
+    <form>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>ID Pc</label>
+        <input
+        readonly
+          type="number"
+          [(ngModel)]="currentPc.idPC"
+          name="idPC"
+          class="form-control"
+        />
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Marque</label>
+        <input
+          type="text"
+          [(ngModel)]="currentPc.marque"
+          name="Marque"
+          class="form-control"
+        />
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+        <label>Modele</label>
+        <input
+          type="text"
+          [(ngModel)]="currentPc.modele"
+          name="Modele"
+          class="form-control"
+        />
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Processeur</label>
+        <input
+          type="text"
+          [(ngModel)]="currentPc.processeur"
+          name="Processeur"
+          class="form-control"
+        />
+      </div>
+      <div class="col-sm-2 col-md-2 col-lg-2">
+          <label>MemoireRAM (Go)</label>
+          <input
+            type="number"
+            [(ngModel)]="currentPc.memoireRAM"
+            name="MemoireRAM"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <label>CapaciteStockage(Go)</label>
+          <input
+            type="number"
+            [(ngModel)]="currentPc.capaciteStockage"
+            name="CapaciteStockage"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+          <label>CarteGraphique</label>
+          <input
+            type="text"
+            [(ngModel)]="currentPc.carteGraphique"
+            name="CarteGraphique"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <label>SystemeExploitation</label>
+          <input
+            type="text"
+            [(ngModel)]="currentPc.systemeExploitation"
+            name="SystemeExploitation"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+          <label>Prix</label>
+          <input
+            type="number"
+            [(ngModel)]="currentPc.prix"
+            name="Prix"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <label>Date d'achat</label>
+          <input
+            type="date"
+            [(ngModel)]="currentPc.dateAchat"
+            (ngModelChange)=" currentPc.dateAchat= $event"
+            name="DateAchat"
+            class="form-control"
+          />
+        </div>
+      <div class="mt-2">
+        <button type="submit" (click)="updatePc()" class="btn btn-success">Modifer</button>
+      </div>
+    </form>
+  </div>
+  

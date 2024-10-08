@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>Id</th>
+          <th>Marque</th>
+          <th>Modele</th>
+          <th>Processeur</th>
+          <th>MemoireRAM</th>
+          <th>CapaciteStockage</th>
+          <th>CarteGraphique</th>
+          <th>SystemeExploitation</th>
+          <th>Prix</th>
+          <th>Date d'achat</th>
+          <th></th>
+        </tr>
+        <tbody *ngFor="let pc of pcs">
+          <tr>
+            <td>{{ pc.idPC }}</td>
+            <td>{{ pc.marque }}</td>
+            <td>{{ pc.modele }}</td>
+            <td>{{ pc.processeur }}</td>
+            <td>{{ pc.memoireRAM }} Go</td>
+            <td>{{ pc.capaciteStockage }} Go</td>
+            <td>{{ pc.carteGraphique }}</td>
+            <td>{{ pc.systemeExploitation }}</td>
+            <td>{{ pc.prix }}</td>
+            <td>{{ pc.dateAchat| date : "dd/MM/yyyy" }}</td>
+            <td><a class="btn btn-danger" (click)="supprimerPc(pc)">Supprimer</a></td>
+            <td><a class="btn btn-success" [routerLink]="['/updatePc',pc.idPC]">Modifier</a></td>
+
+            
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
