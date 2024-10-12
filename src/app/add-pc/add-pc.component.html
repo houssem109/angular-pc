@@ -14,12 +14,16 @@
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Marque</label>
-      <input
-        type="text"
-        [(ngModel)]="newPc.marque"
-        name="Marque"
-        class="form-control"
-      />
+      <select
+        class="form-control form-control-lg"
+        id="idMarque"
+        name="idMarque"
+        [(ngModel)]="newIdMarque"
+      >
+        <option *ngFor="let mar of marques" [value]="mar.idMarque">
+          {{ mar.nomMarque }}
+        </option>
+      </select>
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label>Modele</label>
@@ -40,59 +44,59 @@
       />
     </div>
     <div class="col-sm-2 col-md-2 col-lg-2">
-        <label>MemoireRAM (Go)</label>
-        <input
-          type="number"
-          [(ngModel)]="newPc.memoireRAM"
-          name="MemoireRAM"
-          class="form-control"
-        />
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label>CapaciteStockage(Go)</label>
-        <input
-          type="number"
-          [(ngModel)]="newPc.capaciteStockage"
-          name="CapaciteStockage"
-          class="form-control"
-        />
-      </div>
-      <div class="col-sm-4 col-md-4 col-lg-4">
-        <label>CarteGraphique</label>
-        <input
-          type="text"
-          [(ngModel)]="newPc.carteGraphique"
-          name="CarteGraphique"
-          class="form-control"
-        />
-      </div>
-      <div class="col-sm-4 col-md-4 col-lg-4">
-        <label>SystemeExploitation</label>
-        <input
-          type="text"
-          [(ngModel)]="newPc.systemeExploitation"
-          name="SystemeExploitation"
-          class="form-control"
-        />
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label>Prix</label>
-        <input
-          type="number"
-          [(ngModel)]="newPc.prix"
-          name="Prix"
-          class="form-control"
-        />
-      </div>
-      <div class="col-sm-2 col-md-2 col-lg-2">
-        <label>Date d'achat</label>
-        <input
-          type="date"
-          [(ngModel)]="newPc.dateAchat"
-          name="DateAchat"
-          class="form-control"
-        />
-      </div>
+      <label>MemoireRAM (Go)</label>
+      <input
+        type="number"
+        [(ngModel)]="newPc.memoireRAM"
+        name="MemoireRAM"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>CapaciteStockage(Go)</label>
+      <input
+        type="number"
+        [(ngModel)]="newPc.capaciteStockage"
+        name="CapaciteStockage"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>CarteGraphique</label>
+      <input
+        type="text"
+        [(ngModel)]="newPc.carteGraphique"
+        name="CarteGraphique"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>SystemeExploitation</label>
+      <input
+        type="text"
+        [(ngModel)]="newPc.systemeExploitation"
+        name="SystemeExploitation"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix</label>
+      <input
+        type="number"
+        [(ngModel)]="newPc.prix"
+        name="Prix"
+        class="form-control"
+      />
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Date d'achat</label>
+      <input
+        type="date"
+        [(ngModel)]="newPc.dateAchat"
+        name="DateAchat"
+        class="form-control"
+      />
+    </div>
     <div class="mt-2">
       <button type="submit" (click)="addPc()" class="btn btn-success">
         Ajouter
