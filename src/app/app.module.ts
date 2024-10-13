@@ -7,13 +7,15 @@ import { PcComponent } from './pc/pc.component';
 import { AddPcComponent } from './add-pc/add-pc.component';
 import { FormsModule } from '@angular/forms';
 import { UpdatePcComponent } from './update-pc/update-pc.component';
+import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PcComponent,
     AddPcComponent,
-    UpdatePcComponent
+    UpdatePcComponent,
+    RechercheParMarqueComponent
   ],
   imports: [
     BrowserModule,

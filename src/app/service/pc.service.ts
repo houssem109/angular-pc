@@ -9,6 +9,7 @@ export class PcService {
   pcs: Pc[];
   marques!: Marque[];
   pc!: Pc;
+  pcsRecherche!:Pc[];
 
   constructor() {
     this.marques = [
@@ -107,4 +108,17 @@ export class PcService {
   consulterMarques(id:number): Marque{
     return this.marques.find(mar => mar.idMarque == id)!;
     }
+
+
+    rechercherParMarque(idMar: number): Pc[]{
+      this.pcsRecherche = [];
+     
+      this.pcs.forEach((cur, index) => {
+       if( idMar== cur.marque.idMarque) {
+           console.log("cur "+cur);
+          this.pcsRecherche.push(cur);
+           }
+     });
+     return this.pcsRecherche;
+     }
 }
