@@ -9,13 +9,18 @@ import { FormsModule } from '@angular/forms';
 import { UpdatePcComponent } from './update-pc/update-pc.component';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 
+import { RechercheParModelComponent } from './recherche-par-model/recherche-par-model.component';
+import { SearchFilterPipe } from './search-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
     PcComponent,
     AddPcComponent,
     UpdatePcComponent,
-    RechercheParMarqueComponent
+    RechercheParMarqueComponent,
+    RechercheParModelComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

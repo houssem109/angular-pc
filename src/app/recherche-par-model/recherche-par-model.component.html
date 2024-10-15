@@ -1,13 +1,21 @@
 <div class="container" style="max-width: 90%;">
-    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-        <label>Marque </label>
-        <select class="form-control form-control-lg" id="idMarque" name="idMarque"
-        [(ngModel)]="idMarque" (change)="onChange()">
-        <option *ngFor="let mar of marques" value="{{mar.idMarque}}">
-        {{mar.nomMarque}}
-         </option>
-        </select>
+
+
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>model Pc en tapant</label>
+        <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
         </div>
+        </form>
+        
+
+    <!-- <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+        <label>model Pc en tapant</label>
+        <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+        </div>
+        </form> -->
+        
     <div class="card shadow mb-4">
       <div class="card-body">
         <table class="table table-striped">
@@ -24,7 +32,7 @@
             <th>Date d'achat</th>
             <th></th>
           </tr>
-          <tbody *ngFor="let pc of pcs">
+          <tbody *ngFor="let pc of pcs | searchFilter : searchTerm">
             <tr>
               <td>{{ pc.idPC }}</td>
               <td>{{ pc.marque.nomMarque }}</td>
@@ -36,9 +44,9 @@
               <td>{{ pc.systemeExploitation }}</td>
               <td>{{ pc.prix }}</td>
               <td>{{ pc.dateAchat| date : "dd/MM/yyyy" }}</td>
-              <td><a class="btn btn-danger" (click)="supprimerPc(pc)">Supprimer</a></td>
+              <!-- <td><a class="btn btn-danger" (click)="supprimerPc(pc)">Supprimer</a></td> 
               <td><a class="btn btn-success" [routerLink]="['/updatePc', pc.idPC]">Modifier</a></td>
-  
+            -->
               
             </tr>
             
