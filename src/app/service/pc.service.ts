@@ -47,6 +47,7 @@ export class PcService {
         systemeExploitation: 'Windows 10 Professionnel',
         prix: 2900,
         dateAchat: new Date('09/20/2022'),
+        email:"houssembenjaafar105@gmail.com"
       },
       {
         idPC: 2,
@@ -59,6 +60,7 @@ export class PcService {
         systemeExploitation: 'Windows 11 Professionnel',
         prix: 3159,
         dateAchat: new Date('12/20/2024'),
+        email:"houssembenjaafar109@gmail.com"
       },
     ];
   }

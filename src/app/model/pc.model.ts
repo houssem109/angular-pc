@@ -12,4 +12,5 @@ export class Pc {
     systemeExploitation!: string;
     prix!:number
     dateAchat!: Date;
+    email!:string;
 }

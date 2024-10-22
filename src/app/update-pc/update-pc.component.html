@@ -2,7 +2,7 @@
     <div>
       <h2>Modifier un PC :</h2>
     </div>
-    <form>
+    <form [formGroup]="myform">
       <div class="col-sm-2 col-md-2 col-lg-2">
         <label>ID Pc</label>
         <input
@@ -10,15 +10,26 @@
           type="number"
           [(ngModel)]="currentPc.idPC"
           name="idPC"
+          formControlName="idPC"
+
           class="form-control"
         />
       </div>
+      <span
+      *ngIf="
+        myform.controls['idPC'].hasError('required') &&
+        myform.controls['idPC'].touched
+      "
+      class="text-danger"
+      >Id Pc est obligatoire</span
+    >
       <div class="col-sm-4 col-md-4 col-lg-4">
         <label>Marque</label>
         <select
         class="form-control form-control-lg"
         id="idMarque"
         name="idMarque"
+        formControlName="nomMarque"
         [(ngModel)]="updateIdMarque"
       >
         <option *ngFor="let mar of marques" [value]="mar.idMarque">
@@ -26,6 +37,15 @@
         </option>
       </select>
       </div>
+      <span
+      *ngIf="
+        myform.controls['nomMarque'].hasError('required') &&
+        myform.controls['nomMarque'].touched
+      "
+      class="text-danger"
+    >
+      La Marque est obligatoire
+    </span>
       <div class="col-sm-4 col-md-4 col-lg-4">
         <label>Modele</label>
         <input
@@ -33,62 +53,168 @@
           [(ngModel)]="currentPc.modele"
           name="Modele"
           class="form-control"
+          formControlName="modele"
         />
       </div>
+      <span
+      *ngIf="
+        myform.controls['modele'].hasError('minlength') &&
+        myform.controls['modele'].touched
+      "
+      class="text-danger"
+    >
+      Le modèle doit contenir au moins 3 caractères
+    </span>
+    <span
+      *ngIf="
+        myform.controls['modele'].hasError('required') &&
+        myform.controls['modele'].touched
+      "
+      class="text-danger"
+    >
+      Le modèle est obligatoire
+    </span>
       <div class="col-sm-4 col-md-4 col-lg-4">
         <label>Processeur</label>
         <input
           type="text"
           [(ngModel)]="currentPc.processeur"
           name="Processeur"
+          formControlName="processeur"
           class="form-control"
         />
       </div>
+      <span
+      *ngIf="
+        myform.controls['processeur'].hasError('required') &&
+        myform.controls['processeur'].touched
+      "
+      class="text-danger"
+    >
+      Le processeur est obligatoire
+    </span>
       <div class="col-sm-2 col-md-2 col-lg-2">
           <label>MemoireRAM (Go)</label>
           <input
             type="number"
             [(ngModel)]="currentPc.memoireRAM"
             name="MemoireRAM"
+            formControlName="memoireRAM"
             class="form-control"
           />
         </div>
+        <span
+      *ngIf="
+        myform.controls['memoireRAM'].hasError('required') &&
+        myform.controls['memoireRAM'].touched
+      "
+      class="text-danger"
+    >
+      La mémoire RAM est obligatoire
+    </span>
+    <span
+      *ngIf="
+        myform.controls['memoireRAM'].hasError('min') &&
+        myform.controls['memoireRAM'].touched
+      "
+      class="text-danger"
+    >
+      La mémoire RAM doit être d'au moins 4 Go
+    </span>
         <div class="col-sm-2 col-md-2 col-lg-2">
           <label>CapaciteStockage(Go)</label>
           <input
             type="number"
             [(ngModel)]="currentPc.capaciteStockage"
             name="CapaciteStockage"
+            formControlName="capaciteStockage"
             class="form-control"
           />
         </div>
+        <span
+        *ngIf="
+          myform.controls['capaciteStockage'].hasError('required') &&
+          myform.controls['capaciteStockage'].touched
+        "
+        class="text-danger"
+      >
+        La capacité de stockage est obligatoire
+      </span>
+      <span
+        *ngIf="
+          myform.controls['capaciteStockage'].hasError('min') &&
+          myform.controls['capaciteStockage'].touched
+        "
+        class="text-danger"
+      >
+        La capacité de stockage doit être d'au moins 128 Go
+      </span>
         <div class="col-sm-4 col-md-4 col-lg-4">
           <label>CarteGraphique</label>
           <input
             type="text"
             [(ngModel)]="currentPc.carteGraphique"
             name="CarteGraphique"
+            formControlName="carteGraphique"
             class="form-control"
           />
         </div>
+        <span
+      *ngIf="
+        myform.controls['carteGraphique'].hasError('required') &&
+        myform.controls['carteGraphique'].touched
+      "
+      class="text-danger"
+    >
+      La carte graphique est obligatoire
+    </span>
         <div class="col-sm-4 col-md-4 col-lg-4">
           <label>SystemeExploitation</label>
           <input
             type="text"
             [(ngModel)]="currentPc.systemeExploitation"
             name="SystemeExploitation"
+            formControlName="systemeExploitation"
             class="form-control"
           />
         </div>
+        <span
+      *ngIf="
+        myform.controls['systemeExploitation'].hasError('required') &&
+        myform.controls['systemeExploitation'].touched
+      "
+      class="text-danger"
+    >
+      Le système d'exploitation est obligatoire
+    </span>
         <div class="col-sm-2 col-md-2 col-lg-2">
           <label>Prix</label>
           <input
             type="number"
             [(ngModel)]="currentPc.prix"
             name="Prix"
+            formControlName="prix"
             class="form-control"
           />
         </div>
+        <span
+      *ngIf="
+        myform.controls['prix'].hasError('required') &&
+        myform.controls['prix'].touched
+      "
+      class="text-danger"
+    >
+      Le prix est obligatoire
+    </span>
+    <span
+      *ngIf="
+        myform.controls['prix'].hasError('min') &&
+        myform.controls['prix'].touched
+      "
+      class="text-danger"
+    >
+      Le prix doit être d'au moins 100
+    </span>
         <div class="col-sm-2 col-md-2 col-lg-2">
           <label>Date d'achat</label>
           <input
@@ -96,11 +222,49 @@
             [(ngModel)]="currentPc.dateAchat"
             (ngModelChange)="currentPc.dateAchat= $event"
             name="DateAchat"
+            formControlName="dateAchat"
             class="form-control"
           />
         </div>
+        <span
+        *ngIf="
+          myform.controls['dateAchat'].hasError('required') &&
+          myform.controls['dateAchat'].touched
+        "
+        class="text-danger"
+      >
+        La date d'achat est obligatoire
+      </span>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <label>email</label>
+          <input
+            type="text"
+            [(ngModel)]="currentPc.email"
+            name="email"
+            formControlName="email"
+            class="form-control"
+          />
+        </div>
+        <span
+          *ngIf="
+            myform.controls['email'].hasError('required') &&
+            myform.controls['email'].touched
+          "
+          class="text-danger"
+        >
+          L'email est obligatoire
+        </span>
+        <span
+          *ngIf="
+            myform.controls['email'].hasError('email') &&
+            myform.controls['email'].touched
+          "
+          class="text-danger"
+        >
+          L'email n'est pas valide
+        </span>
       <div class="mt-2">
-        <button type="submit" (click)="updatePc()" class="btn btn-success">Modifer</button>
+        <button type="submit" [disabled]="myform.invalid"  (click)="updatePc()" class="btn btn-success">Modifer</button>
       </div>
     </form>
   </div>
