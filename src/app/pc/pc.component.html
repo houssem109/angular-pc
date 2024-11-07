@@ -12,6 +12,7 @@
           <th>CarteGraphique</th>
           <th>SystemeExploitation</th>
           <th>Prix</th>
+          <th>email</th>
           <th>Date d'achat</th>
           <th></th>
         </tr>
@@ -28,8 +29,10 @@
             <td>{{ pc.prix }}</td>
             <td>{{ pc.email}}</td>
             <td>{{ pc.dateAchat| date : "dd/MM/yyyy" }}</td>
-            <td><a class="btn btn-danger" (click)="supprimerPc(pc)">Supprimer</a></td>
-            <td><a class="btn btn-success" [routerLink]="['/updatePc',pc.idPC]">Modifier</a></td>
+            <td><a class="btn btn-danger" a *ngIf="authService.isAdmin()"
+              (click)="supprimerPc(pc)">Supprimer</a></td>
+            <td><a class="btn btn-success" a *ngIf="authService.isAdmin()"
+              [routerLink]="['/updatePc',pc.idPC]">Modifier</a></td>
 
             
           </tr>

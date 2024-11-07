@@ -11,6 +11,8 @@ import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-pa
 
 import { RechercheParModelComponent } from './recherche-par-model/recherche-par-model.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SearchFilterPipe } from './search-filter.pipe';
     UpdatePcComponent,
     RechercheParMarqueComponent,
     RechercheParModelComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

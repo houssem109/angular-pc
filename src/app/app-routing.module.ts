@@ -5,14 +5,21 @@ import { AddPcComponent } from './add-pc/add-pc.component';
 import { UpdatePcComponent } from './update-pc/update-pc.component';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 import { RechercheParModelComponent } from './recherche-par-model/recherche-par-model.component';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { pcGuard } from './pc.guard';
 
 const routes: Routes = [
   {path:"pc", component : PcComponent},
-  {path:"add-pc", component :AddPcComponent },
+  {path:"add-pc", component :AddPcComponent , canActivate:[pcGuard]},
   { path: "", redirectTo: "pc", pathMatch: "full" },
-  {path: "updatePc/:id", component: UpdatePcComponent},
+  {path: "updatePc/:id", component: UpdatePcComponent , canActivate:[pcGuard]},
   {path:"recherche-par-marque", component: RechercheParMarqueComponent },
   {path:"recherche-par-model" , component:RechercheParModelComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'app-forbidden', component: ForbiddenComponent},
+
+
 ];
 
 @NgModule({
