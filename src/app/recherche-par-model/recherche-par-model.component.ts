@@ -16,7 +16,11 @@ searchTerm!: string;
   constructor(private PcService: PcService){};
   
   ngOnInit(): void {
-    this.pcs = this.PcService.listePc();
+    //this.pcs = this.PcService.listePc();
+    this.PcService.listePc().subscribe(pcs => {
+      console.log(pcs);
+      this.pcs = pcs;
+      });
   }
   onKeyUp(filterText : string){
 

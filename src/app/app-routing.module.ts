@@ -8,6 +8,7 @@ import { RechercheParModelComponent } from './recherche-par-model/recherche-par-
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { pcGuard } from './pc.guard';
+import { ListeMarqueComponent } from './liste-marque/liste-marque.component';
 
 const routes: Routes = [
   {path:"pc", component : PcComponent},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path:"recherche-par-model" , component:RechercheParModelComponent},
   {path: 'login', component: LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},
+  {path: "listeMarques", component : ListeMarqueComponent},
+
 
 
 ];

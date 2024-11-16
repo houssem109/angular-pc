@@ -30,6 +30,7 @@
             <a class="dropdown-item" href="#">Lister</a>
             <a class="dropdown-item" routerLink="recherche-par-marque">recherche par marque</a>
             <a class="dropdown-item" routerLink="recherche-par-model">recherche par Modele</a>
+            <a *ngIf="authService.isAdmin()"  class="dropdown-item" routerLink="/listeMarques" >Gestion des Marques</a>
           </div>
         </li>
       </ul>

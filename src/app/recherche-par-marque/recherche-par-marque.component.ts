@@ -19,20 +19,35 @@ export class RechercheParMarqueComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.marques=this.PcService.listeMarques();
+    this.PcService.listeMarques().
+      subscribe(mar => {this.marques = mar._embedded.marques;
+      console.log(mar);
+      });
     this.pcs=[];
   }
-  supprimerPc(p: Pc) {
+  /* supprimerPc(p: Pc) {
     //console.log(p);
     let conf = confirm("Etes-vous sûr ?");
     if (conf)
       this.PcService.supprimerPc(p);
       this.pcs = this.PcService.rechercherParMarque(this.idMarque);
 
-  }
+  } */
+/*   supprimerPc(p: Pc)
+    {
+    let conf = confirm("Etes-vous sûr ?");
+    if (conf)
+    this.PcService.supprimerPc(p.idPC).subscribe(() => {
+    console.log("pc supprimé");
+    this.pcs = this.PcService.rechercherParMarque(this.idMarque);
+    });
+    }  */
 
   onChange(){
-console.log(this.idMarque);
- this.pcs = this.PcService.rechercherParMarque(this.idMarque);
+/* console.log(this.idMarque);
+ this.pcs = this.PcService.rechercherParMarque(this.idMarque); */
+
+ this.PcService.rechercherParMarque(this.idMarque).
+subscribe(pcs =>{this.pcs=pcs});
 }
 }

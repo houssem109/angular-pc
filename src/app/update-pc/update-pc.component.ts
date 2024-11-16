@@ -22,7 +22,11 @@ export class UpdatePcComponent implements OnInit {
     private pcService: PcService,
     private formBuilder:FormBuilder) { }
     ngOnInit() {
-      this.marques = this.pcService.listeMarques();
+      //this.marques = this.pcService.listeMarques();
+      this.pcService.listeMarques().
+      subscribe(mar => {this.marques = mar._embedded.marques;
+      console.log(mar);
+      });
       // console.log(this.route.snapshot.params.id);
       this.myform=this.formBuilder.group({
         idPC: ['', [Validators.required]],
@@ -38,15 +42,24 @@ export class UpdatePcComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]]
       });
       
-      this.currentPc = this.pcService.consulterPc(this.activatedRoute.snapshot. params['id']);
+      /* this.currentPc = this.pcService.consulterPc(this.activatedRoute.snapshot. params['id']);
       this.updateIdMarque=this.currentPc.marque.idMarque;
       console.log(this.currentPc);
-
+ */
+      this.pcService.consulterPc(this.activatedRoute.snapshot.params['id']).
+      subscribe( pc =>{ this.currentPc = pc;
+        this.updateIdMarque =this.currentPc.marque.idMarque; } ) ;
      
       }
-      updatePc() {
+      /* updatePc() {
         this.currentPc.marque=this.pcService.consulterMarques(this.updateIdMarque)
         this.pcService.updatePc(this.currentPc);
         this.router.navigate(['pc']);
-        }
+        } */
+        updatePc() {
+          this.currentPc.marque = this.marques.find(mar => mar.idMarque == this.updateIdMarque)!;
+          this.pcService.updatePc(this.currentPc).subscribe(pc => {
+          this.router.navigate(['pc']); }
+          );
+          }
 }

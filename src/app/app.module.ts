@@ -13,6 +13,9 @@ import { RechercheParModelComponent } from './recherche-par-model/recherche-par-
 import { SearchFilterPipe } from './search-filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ListeMarqueComponent } from './liste-marque/liste-marque.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateMarqueComponent } from './update-marque/update-marque.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     RechercheParModelComponent,
     SearchFilterPipe,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ListeMarqueComponent,
+    UpdateMarqueComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()

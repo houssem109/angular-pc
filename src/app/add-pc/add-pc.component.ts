@@ -21,7 +21,17 @@ export class AddPcComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.marques = this.PcService.listeMarques();
+    //this.marques = this.PcService.listeMarques();
+   
+      this.PcService.listeMarques().
+      subscribe(mar => {this.marques = mar._embedded.marques;
+      console.log(mar);
+      });
+      
+      
+
+
+
     this.myform=this.formBuilder.group({
       idPC: ['', [Validators.required]],
       nomMarque: [null, [Validators.required]],
@@ -36,11 +46,20 @@ export class AddPcComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]]
     });
   }
-  addPc() {
+  /* addPc() {
     //console.log(this.newPc)
     this.newMarque=this.PcService.consulterMarques(this.newIdMarque);
     this.newPc.marque=this.newMarque;
     this.PcService.ajouterPc(this.newPc);
     this.router.navigate(['pc']);
-    }
-}
+    } */
+    addPc(){
+      this.newPc.marque = this.marques.find(mar => mar.idMarque == this.newIdMarque)!;
+      this.PcService.ajouterPc(this.newPc)
+      .subscribe(pc => {
+      console.log(pc);
+      this.router.navigate(['pc']);
+      });
+      }
+      
+  }
