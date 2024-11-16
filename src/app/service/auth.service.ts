@@ -17,7 +17,7 @@ export class AuthService {
 
 
   public loggedUser!: string;
-  public isloggedIn: Boolean = false;
+  public    isloggedIn: Boolean = false;
   public roles!: string[];
 
 

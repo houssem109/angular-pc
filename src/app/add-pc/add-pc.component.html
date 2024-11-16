@@ -3,16 +3,7 @@
     <h2>Ajouter un PC :</h2>
   </div>
   <form [formGroup]="myform">
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <label>ID Pc</label>
-      <input
-        type="number"
-        [(ngModel)]="newPc.idPC"
-        name="idPC"
-        formControlName="idPC"
-        class="form-control"
-      />
-    </div>
+    
     <span
         *ngIf="
           myform.controls['idPC'].hasError('required') &&

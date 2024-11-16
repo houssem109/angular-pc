@@ -33,7 +33,7 @@ export class AddPcComponent implements OnInit {
 
 
     this.myform=this.formBuilder.group({
-      idPC: ['', [Validators.required]],
+      idPC: ['', []],
       nomMarque: [null, [Validators.required]],
       modele: ['', [Validators.required, Validators.minLength(3)]],
       processeur: ['', [Validators.required]],
