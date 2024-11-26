@@ -29,7 +29,9 @@ export class UpdatePcComponent implements OnInit {
       });
       // console.log(this.route.snapshot.params.id);
       this.myform=this.formBuilder.group({
-        idPC: ['', [Validators.required]],
+        idPC: ['', []],
+        //idPC: ['', [Validators.required]],
+
         nomMarque: [null, [Validators.required]],
         modele: ['', [Validators.required, Validators.minLength(3)]],
         processeur: ['', [Validators.required]],

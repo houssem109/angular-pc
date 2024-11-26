@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:"recherche-par-model" , component:RechercheParModelComponent},
   {path: 'login', component: LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},
-  {path: "listeMarques", component : ListeMarqueComponent},
+  {path: "listeMarques", component : ListeMarqueComponent,canActivate:[pcGuard]},
 
 
 
