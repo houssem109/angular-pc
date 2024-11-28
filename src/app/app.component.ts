@@ -11,27 +11,30 @@ import { AuthService } from './service/auth.service';
 export class AppComponent implements OnInit {
   title = 'Pc';
 
-
-  constructor(public authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    let isloggedin: string;
-    let loggedUser : string;
-    // if isloggedin is null so we set to  false
-    
-    isloggedin = localStorage.getItem('isloggedIn')?? 'false' ;
-    // and this to empty
-    loggedUser = localStorage.getItem('loggedUser')??'';
+    /* if (this.isBrowser()) {
+      let isloggedin: string = localStorage.getItem('isloggedIn') ?? 'false';
+      let loggedUser: string = localStorage.getItem('loggedUser') ?? '';
 
-    if (isloggedin != "true" || !loggedUser)
+      if (isloggedin !== 'true' || !loggedUser) {
+        this.router.navigate(['/login']);
+      } else {
+        this.authService.setLoggedUserFromLocalStorage(loggedUser);
+      }
+    } */
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || this.authService.isTokenExpired())
       this.router.navigate(['/login']);
-    else
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
   }
 
   onLogout() {
     this.authService.logout();
+  }
+
+  // Utility method to check if the code is running in the browser
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }

@@ -14,8 +14,9 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ListeMarqueComponent } from './liste-marque/liste-marque.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, } from '@angular/common/http';
 import { UpdateMarqueComponent } from './update-marque/update-marque.component';
+import { TokenInterceptor } from './service/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,11 @@ import { UpdateMarqueComponent } from './update-marque/update-marque.component';
     HttpClientModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    { provide : HTTP_INTERCEPTORS,
+      useClass : TokenInterceptor,
+      multi : true}
+      
   ],
   bootstrap: [AppComponent]
 })
