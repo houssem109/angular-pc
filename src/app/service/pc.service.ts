@@ -1,9 +1,11 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Pc } from '../model/pc.model';
 import { Marque } from '../model/marque.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MarqueWrapper } from '../model/marqueWrapped.model';
+import { apiURL, apiURLMar } from '../config';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -11,15 +13,14 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
   providedIn: 'root',
 })
 export class PcService {
-  apiURL: string = 'http://localhost:8091/pcs/api';
-  apiURLMar: string = 'http://localhost:8091/pcs/mar';
+
 
   pcs!: Pc[];
   marques!: Marque[];
   pc!: Pc;
   pcsRecherche!: Pc[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     /*  this.marques = [
        { idMarque: 1, nomMarque: 'MSI' },
        { idMarque: 2, nomMarque: 'GIGABYTE' },
@@ -75,16 +76,35 @@ export class PcService {
   /* listePc(): Pc[] {
     return this.pcs;
   } */
+
+
+
   listePc(): Observable<Pc[]> {
-    return this.http.get<Pc[]>(this.apiURL);
+    //return this.http.get<Pc[]>(apiURL);
+   
+    return this.http.get<Pc[]>(apiURL + "/all");
   }
+
 
   /*  ajouterPc(p: Pc) {
      this.pcs.push(p);
    } */
+
+
+
+
   ajouterPc(pc: Pc): Observable<Pc> {
-    return this.http.post<Pc>(this.apiURL, pc, httpOptions);
+    /*     return this.http.post<Pc>(apiURL, pc, httpOptions);*/
+
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.http.post<Pc>(apiURL + "/addpc", pc, { headers: httpHeaders });
   }
+
+
+
+
 
   /* supprimerPc(p: Pc) {
     //supprimer le Pc p du tableau pcs
@@ -99,9 +119,15 @@ export class PcService {
       }
       });  } */
   supprimerPc(id: number) {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.delete(url, httpOptions);
+    /* const url = `${apiURL}/${id}`;
+    return this.http.delete(url, httpOptions); */
+    const url = `${apiURL}/delpc/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.http.delete(url, { headers: httpHeaders });
   }
+
 
 
   /*  consulterPc(id: number): Pc {
@@ -109,8 +135,14 @@ export class PcService {
      return this.pc;
    } */
   consulterPc(id: number): Observable<Pc> {
-    const url = `${this.apiURL}/${id}`;
-    return this.http.get<Pc>(url);
+    /*   const url = `${apiURL}/${id}`;
+      return this.http.get<Pc>(url); */
+
+    const url = `${apiURL}/getbyid/${id}`;
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.http.get<Pc>(url, { headers: httpHeaders });
   }
 
   trierPcs() {
@@ -131,7 +163,13 @@ export class PcService {
       this.trierPcs();
     } */
   updatePc(pc: Pc): Observable<Pc> {
-    return this.http.put<Pc>(this.apiURL, pc, httpOptions);
+    /*  return this.http.put<Pc>(apiURL, pc, httpOptions); */
+
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.http.put<Pc>(apiURL + "/updatepc", pc, { headers: httpHeaders });
+
   }
   /* listeMarques(): Marque[] {
     return this.marques;
@@ -139,8 +177,17 @@ export class PcService {
   /* listeMarques():Observable<Marque[]>{
     return this.http.get<Marque[]>(this.apiURL+"/mar");
     } */
-    listeMarques(): Observable<MarqueWrapper> {
-    return this.http.get<MarqueWrapper>(this.apiURLMar);
+  listeMarques(): Observable<MarqueWrapper> {
+    /*     return this.http.get<MarqueWrapper>(apiURLMar);
+    
+     */
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+    return this.http.get<MarqueWrapper>(apiURLMar, { headers: httpHeaders }
+    );
+
+
   }
 
   consulterMarques(id: number): Marque {
@@ -159,12 +206,12 @@ export class PcService {
     });
     return this.pcsRecherche;
   } */
-    rechercherParMarque(idMar: number):Observable< Pc[]> {
-    const url = `${this.apiURL}/pcsmar/${idMar}`;
+  rechercherParMarque(idMar: number): Observable<Pc[]> {
+    const url = `${apiURL}/pcsmar/${idMar}`;
     return this.http.get<Pc[]>(url);
-    }
-    
-    ajouterMarque( mar: Marque):Observable<Marque>{
-      return this.http.post<Marque>(this.apiURLMar, mar, httpOptions);
-      }
+  }
+
+  ajouterMarque(mar: Marque): Observable<Marque> {
+    return this.http.post<Marque>(apiURLMar, mar, httpOptions);
+  }
 }
